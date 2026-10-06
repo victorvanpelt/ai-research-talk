@@ -1,0 +1,25 @@
+# Quarto and LaTeX build files; `quarto render` makes all of them again
+.quarto/
+*_files/
+spark_talk_ai_research_slides.tex
+*.aux
+*.log
+*.nav
+*.snm
+*.toc
+*.vrb
+*.out
+*.fls
+*.fdb_latexmk
+*.xdv
+*.synctex.gz
+
+# Earlier version of the workflow picture; the deck does not load it
+images/skill_workflow_gemini.png
+
+# Local tool, editor, and system files
+.claude/
+.mcp.json
+.vscode/
+.DS_Store
+Thumbs.db

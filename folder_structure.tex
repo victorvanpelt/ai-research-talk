@@ -1,0 +1,46 @@
+% Reproducible folder structure, redrawn in the deck style from the pipeline deck's figure4.png.
+\begin{tikzpicture}[
+  dir/.style={anchor=west, font=\small\bfseries, text=whu_blue, inner sep=1pt},
+  file/.style={anchor=west, font=\small, text=whu_anthracite, inner sep=1pt},
+  tl/.style={draw=whu_anthracite!60, line width=0.6pt}
+]
+  \node[anchor=west, font=\small\bfseries, text=whu_anthracite, inner sep=1pt] (root) at (0,0) {Project folder};
+  \node[dir] at (0.55,-0.40) {0\_data};
+  \draw[tl] (0.2,-0.40) -- (0.5,-0.40);
+  \node[file] at (1.15,-0.80) {raw\_data.xxx};
+  \draw[tl] (0.8,-0.80) -- (1.1,-0.80);
+  \node[file] at (1.15,-1.20) {codebook.md};
+  \draw[tl] (0.8,-1.20) -- (1.1,-1.20);
+  \node[dir] at (0.55,-1.60) {1\_code};
+  \draw[tl] (0.2,-1.60) -- (0.5,-1.60);
+  \node[file] at (1.15,-2.00) {code.xxx};
+  \draw[tl] (0.8,-2.00) -- (1.1,-2.00);
+  \node[dir] at (0.55,-2.40) {2\_process};
+  \draw[tl] (0.2,-2.40) -- (0.5,-2.40);
+  \node[file] at (1.15,-2.80) {processed\_data.xxx};
+  \draw[tl] (0.8,-2.80) -- (1.1,-2.80);
+  \node[dir] at (0.55,-3.20) {3\_output};
+  \draw[tl] (0.2,-3.20) -- (0.5,-3.20);
+  \node[file] at (1.15,-3.60) {table\_1.xxx};
+  \draw[tl] (0.8,-3.60) -- (1.1,-3.60);
+  \node[file] at (1.15,-4.00) {figure\_1.xxx};
+  \draw[tl] (0.8,-4.00) -- (1.1,-4.00);
+  \node[dir] at (0.55,-4.40) {4\_drafts};
+  \draw[tl] (0.2,-4.40) -- (0.5,-4.40);
+  \node[file] at (1.15,-4.80) {paper.qmd};
+  \draw[tl] (0.8,-4.80) -- (1.1,-4.80);
+  \draw[tl] (0.2,-0.18) -- (0.2,-4.40);
+  \draw[tl] (0.8,-0.58) -- (0.8,-1.20);
+  \draw[tl] (0.8,-1.78) -- (0.8,-2.00);
+  \draw[tl] (0.8,-2.58) -- (0.8,-2.80);
+  \draw[tl] (0.8,-3.38) -- (0.8,-4.00);
+  \draw[tl] (0.8,-4.58) -- (0.8,-4.80);
+  \node[anchor=north west, draw=whu_blue, line width=0.8pt, fill=whu_silvergray!60,
+    rounded corners=3pt, text width=6.4cm, inner sep=8pt, font=\small, text=whu_anthracite]
+    at (4.6,-0.1) {%
+    \textbf{\textcolor{whu_blue}{Four rules}}\\[3pt]
+    1.\ Never modify \textbf{0\_data}\\[2pt]
+    2.\ Only save data to \textbf{2\_process}\\[2pt]
+    3.\ Only load data from \textbf{0\_data} or \textbf{2\_process}\\[2pt]
+    4.\ Anything in \textbf{2\_process} and \textbf{3\_output} can be deleted and regenerated from \textbf{1\_code}};
+\end{tikzpicture}

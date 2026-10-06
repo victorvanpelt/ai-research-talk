@@ -1,0 +1,338 @@
+---
+title: "Using AI Agents Responsibly in Research"
+author: "Victor van Pelt"
+institute: "WHU - Otto Beisheim School of Management"
+format:
+  beamer:
+    aspectratio: 169
+    include-in-header: talk_template.sty
+    keep-tex: true
+    slide-level: 2
+bibliography: references.bib
+csl: apa.csl
+header-includes:
+  - \usepackage{tcolorbox}
+  - \newcommand{\studycard}{\begin{tcolorbox}[width=\linewidth,colback=whu_lightblue!10,colframe=whu_lightblue!10,boxrule=0pt,arc=6pt,left=0.35cm,right=0.35cm,top=6pt,bottom=6pt,before skip=0pt,after skip=0pt]\small\color{whu_anthracite}\setlength{\parskip}{2.5pt}}
+  - \newcommand{\studycardend}{\end{tcolorbox}\par\vspace{0.64cm}}
+  - \newcommand{\cardhead}[1]{{\large\bfseries\color{whu_blue}#1}\par\vspace{1.5pt}}
+  - \setbeamercolor{bibliography entry author}{fg=normal text.fg}
+  - \setbeamercolor{bibliography entry title}{fg=normal text.fg}
+  - \setbeamercolor{bibliography entry location}{fg=normal text.fg}
+  - \setbeamercolor{bibliography entry note}{fg=normal text.fg}
+---
+
+## A full research paper in 24 hours
+
+\begin{center}
+\includegraphics[height=0.74\textheight]{images/opt_stuckler_yt.png}
+\end{center}
+
+\source{\href{https://www.youtube.com/watch?v=YdpFu6Fkr58}{youtube.com/watch?v=YdpFu6Fkr58}}
+
+## Can AI conduct research for us?
+
+\studycard
+
+\cardhead{AI-written papers are weaker in ideas than in execution}
+
+AI models rated 912 AI-written economics papers and 41 published papers [@li2026]
+
+Execution scored 3.8 vs.\ 4.4 out of 5, but fewer ideas reached top-journal level (23% vs.\ 73%)
+
+\studycardend
+
+\studycard
+
+\cardhead{AI agents do the technical work alone, but their papers are rejected}
+
+AI agents had six days to answer the question of an unpublished paper [@kirgis2026]
+
+The paper's authors reviewed the result: the conclusions did not follow from the evidence
+
+\studycardend
+
+In both studies, AI handles the technical work better than the ideas and the research judgment.
+
+## The scale of AI use in research
+
+\vspace{1.5em}
+
+\begin{center}
+\begin{tikzpicture}[x=2.75cm]
+  \draw[-{Stealth[length=3mm]}, line width=1.2pt, whu_blue] (0,0) -- (4.3,0);
+  \foreach \x/\l in {0/\textbf{No AI use}, 1/AI audits our work, 2/AI assists with our tasks, 3/{AI executes, we verify}, 4/\textbf{Full delegation of all research}} {
+    \fill[whu_blue] (\x,0) circle (4pt);
+    \node[below=7pt, align=center, text width=2.4cm, font=\small, text=whu_anthracite] at (\x,0) {\l};
+  }
+\end{tikzpicture}
+\end{center}
+
+\vspace{2em}
+
+\begin{center}
+\large\textbf{\textcolor{whu_blue}{Where on the scale should we use AI for research?}}
+\end{center}
+
+## What comes first in AI tooling for research?
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}[
+  font=\small,
+  head/.style={rectangle,rounded corners=9pt,fill=whu_blue,text=white,font=\large\bfseries,
+               minimum height=0.7cm,minimum width=3.8cm,inner sep=3pt},
+  io/.style={rectangle,rounded corners=3pt,fill=whu_silvergray,text=whu_anthracite,
+             minimum height=0.75cm,minimum width=1cm,inner sep=3pt},
+  lead/.style={rectangle,rounded corners=3pt,fill=whu_blue,text=white,font=\small\bfseries,
+               minimum height=0.75cm,inner xsep=3pt},
+  open/.style={circle,draw=whu_anthracite!70,line width=0.8pt,fill=white,text=whu_anthracite,
+               font=\footnotesize\bfseries,minimum size=0.5cm,inner sep=0pt},
+  arr/.style={-{Stealth[length=5pt]},line width=1.1pt,whu_anthracite!70},
+  note/.style={font=\small\itshape,text=whu_anthracite},
+  txt/.style={font=\small,text=whu_anthracite}
+]
+  % the choice
+  \node[head] (ha) at (-3.6,2.12) {Agent-first};
+  \node[head] (hs) at (3.6,2.12) {Skill-first};
+  \node[txt] at (-3.6,1.45) {\textbf{\textcolor{whu_blue}{Design}} and optimize autonomous agents};
+  \node[txt] at (3.6,1.45) {\textbf{\textcolor{whu_blue}{Design}} workflows that we or our agents can call};
+
+  % agent-first: the agent chooses the steps
+  \node[io] (ta) at (-6.42,0.6) {Task};
+  \node[lead,minimum width=1.35cm] (ag) at (-4.8,0.6) {Agent};
+  \node[open] (g1) at (-3.55,0.85) {?};
+  \node[open] (g2) at (-2.95,0.35) {?};
+  \node[open] (g3) at (-2.35,0.85) {?};
+  \node[io,minimum width=1.15cm] (ra) at (-0.87,0.6) {Result};
+  \draw[arr] (ta) -- (ag);
+  \draw[arr,dashed] (ag.east) -- (g1);
+  \draw[arr,dashed] (g1) -- (g2);
+  \draw[arr,dashed] (g2) -- (g3);
+  \draw[arr,dashed] (g3) -- (ra.west);
+  \node[note] at (-3.6,-0.15) {The agent chooses the steps};
+
+  % skill-first: a written workflow sets the steps
+  \node[io] (ts) at (0.78,0.6) {Task};
+  \node[lead] (s1) at (2.25,0.6) {Step 1};
+  \node[lead] (s2) at (3.6,0.6) {Step 2};
+  \node[lead] (s3) at (4.95,0.6) {Step 3};
+  \node[io,minimum width=1.15cm] (rs) at (6.42,0.6) {Result};
+  \draw[arr] (ts) -- (s1);
+  \draw[arr] (s1) -- (s2);
+  \draw[arr] (s2) -- (s3);
+  \draw[arr] (s3) -- (rs);
+  \node[note] at (3.6,-0.15) {A written workflow sets the steps};
+
+  % what evals and sandboxes test
+  \node[txt] at (-3.6,-0.7) {\textbf{\textcolor{whu_blue}{Test}} the agent with evals and sandboxes};
+  \node[txt] at (3.6,-0.7) {\textbf{\textcolor{whu_blue}{Test}} the workflow with evals and sandboxes};
+\end{tikzpicture}
+\end{center}
+```
+
+\begin{center}
+Not mutually exclusive, but this priority shapes how we think about tooling and AI use.
+\end{center}
+
+## What priority does reproducible research need?
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}[
+  font=\small,
+  card/.style={rounded corners=6pt,fill=whu_lightblue!10},
+  ttl/.style={font=\large\bfseries,text=whu_blue},
+  head/.style={rectangle,rounded corners=9pt,fill=whu_blue,text=white,font=\large\bfseries,
+               minimum height=0.8cm,minimum width=5.2cm,inner sep=3pt},
+  io/.style={rectangle,rounded corners=3pt,fill=white,text=whu_anthracite,
+             minimum height=0.8cm,minimum width=1.1cm,inner sep=3pt},
+  run/.style={rectangle,rounded corners=3pt,fill=white,text=whu_anthracite,
+              font=\footnotesize,minimum height=0.48cm,minimum width=1.6cm,inner sep=2pt},
+  lead/.style={rectangle,rounded corners=3pt,fill=whu_blue,text=white,font=\small\bfseries,
+               minimum height=0.8cm,minimum width=1.45cm,inner xsep=3pt},
+  arr/.style={-{Stealth[length=5pt]},line width=1.1pt,whu_anthracite!70},
+  fork/.style={-{Stealth[length=6pt]},line width=1.4pt,whu_lightblue},
+  txt/.style={font=\small,text=whu_anthracite,align=center},
+  sign/.style={font=\Large\bfseries,text=whu_lightblue}
+]
+  \fill[card] (-6.95,0.3) rectangle (-0.3,3.65);
+  \fill[card] (0.3,0.3) rectangle (6.95,3.65);
+
+  % research: runs match
+  \node[ttl] at (-3.625,3.2) {Research must be reproducible};
+  \node[io] (da) at (-6,2.15) {Data};
+  \node[lead] (me) at (-4.2,2.15) {Method};
+  \node[run] (r1) at (-1.95,2.46) {Run 1: A};
+  \node[run] (r2) at (-1.95,1.84) {Run 2: A};
+  \node[sign] at (-0.8,2.15) {=};
+  \draw[arr] (da) -- (me);
+  \draw[arr] (me.east) -- (r1.west);
+  \draw[arr] (me.east) -- (r2.west);
+  \node[txt] at (-3.625,0.95) {Every run must return the same results\\[3pt] We must be able to verify every step};
+
+  % agents: runs differ
+  \node[ttl] at (3.625,3.2) {Agents are probabilistic};
+  \node[io] (ta) at (1.25,2.15) {Task};
+  \node[lead] (ag) at (3.05,2.15) {Agent};
+  \node[run] (a1) at (5.3,2.46) {Run 1: A};
+  \node[run] (a2) at (5.3,1.84) {Run 2: B};
+  \node[sign] at (6.45,2.15) {≠};
+  \draw[arr] (ta) -- (ag);
+  \draw[arr,dashed] (ag.east) -- (a1.west);
+  \draw[arr,dashed] (ag.east) -- (a2.west);
+  \node[txt] at (3.625,0.95) {The same task can return different results\\[3pt] Agents cannot reliably report their steps};
+
+  % my view
+  \node[head] (sf) at (0,-0.75) {My view: skill-first};
+  \draw[fork] (-3.625,0.3) |- (sf.west);
+  \draw[fork] (3.625,0.3) |- (sf.east);
+\end{tikzpicture}
+\end{center}
+```
+
+## How can skill-first help us do reproducible research?
+
+\vspace{0.6em}
+
+\begin{center}
+\textbf{\textcolor{whu_blue}{Skill-first}} allows us to fix the process in a workflow, for us and for our AI agents.
+\end{center}
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}[
+  card/.style={rounded corners=6pt,fill=whu_lightblue!10},
+  num/.style={circle,fill=whu_blue,text=white,font=\large\bfseries,minimum size=0.8cm,inner sep=0pt},
+  row/.style={anchor=north west,align=left,text width=11.9cm,inner sep=0pt,font=\normalsize,text=whu_anthracite}
+]
+  % each card follows the height of its text
+  % benefit 1
+  \node[row] (t1) at (-5.45,0) {{\large\bfseries\color{whu_blue} Clear goals and repeatable processes}\\[1pt]
+    It forces us to set well-defined goals and processes, which is what reproducible research requires.};
+
+  % benefit 2
+  \node[row] (t2) at ($(t1.south west)+(0,-0.76)$) {{\large\bfseries\color{whu_blue} Clear roles for humans and agents}\\[1pt]
+    It makes us decide where human judgment is needed and where steps can be delegated to (sub)agents when they don't need verification and can be forgotten.};
+
+  \begin{scope}[on background layer]
+    \fill[card] ($(t1.north west)+(-1.5,0.18)$) rectangle ($(t1.south east)+(0.5,-0.18)$);
+    \fill[card] ($(t2.north west)+(-1.5,0.18)$) rectangle ($(t2.south east)+(0.5,-0.18)$);
+  \end{scope}
+  \node[num] at ($(t1.west)+(-0.75,0)$) {1};
+  \node[num] at ($(t2.west)+(-0.75,0)$) {2};
+\end{tikzpicture}
+\end{center}
+```
+
+## My current skill template
+
+\vspace{0.6em}
+
+\fitimage[\linewidth]{images/skill_workflow.pdf}
+
+\begin{center}
+See the \href{https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices}{\textcolor{whu_lightblue}{Anthropic documentation}} and \href{https://agentskills.io}{\textcolor{whu_lightblue}{agentskills.io}}.
+\end{center}
+
+## Example: the paper audit skill
+
+**Purpose:** Does a full audit (mistakes, errors, inconsistencies, and fact-check) in a paper before it goes to a journal. The skill evaluates and reports. I decide what to fix.
+
+1. I give it the paper, the appendix, the response letter, and the analysis output
+2. It lists every table, figure, number, and reference in these files
+3. It writes a short plan of the errors most likely in this paper
+4. Four agents each check one part: references, tables, text, and the response letter
+5. A fresh agent checks each finding against the paper and sets aside what it cannot confirm
+6. Parts that were missed are checked again, for at most three rounds
+7. I receive a report that ranks each mistake and gives its page and an exact quote
+
+## A reproducible folder structure
+
+\vspace{0.3em}
+
+\begin{center}
+\input{folder_structure.tex}
+\end{center}
+
+\source{\href{https://github.com/victorvanpelt/research_pipeline_example}{github.com/victorvanpelt/research\_pipeline\_example}}
+
+## The agent's role in the pipeline
+
+- Agents follow the same rules as human researchers
+- Delete all processed data and output: the code rebuilds everything
+- **Role 1: agents edit the code, or help us edit it**
+    - Already challenging, because AI makes mistakes
+    - The researcher stays in the loop
+- **Role 2: AI as a source of data**
+    - Data an LLM touches becomes generated data, stored as raw data
+    - AI never restructures, merges, or formats existing data: that is code's job
+
+## AGENTS.md: rules for every agent
+
+```text
+# AGENTS.md (excerpt, shortened)
+- Never modify the raw data in 0_data/.
+- Never edit 2_process/ or 3_output/ by hand.
+- Change only 1_code/, 4_drafts/, and the codebook.
+- Before a multi-file change, say which files will change.
+- Never run git commit or git push.
+- Done only when "make clean" then "make" rebuilds everything.
+```
+
+- Git enables us to check and audit the changes made by AI agents (researcher-in-the-loop)
+
+\source{\href{https://github.com/victorvanpelt/research_pipeline_example}{github.com/victorvanpelt/research\_pipeline\_example}}
+
+## My position on the scale
+
+\vspace{1.5em}
+
+\begin{center}
+\begin{tikzpicture}[x=2.75cm]
+  \fill[whu_lightblue!18, rounded corners=6pt] (0.72,-1.55) rectangle (3.28,0.55);
+  \node[font=\bfseries, text=whu_blue] at (2,0.85) {My answer};
+  \draw[-{Stealth[length=3mm]}, line width=1.2pt, whu_blue] (0,0) -- (4.3,0);
+  \foreach \x/\l in {0/\textbf{No AI use}, 1/AI audits our work, 2/AI assists with our tasks, 3/{AI executes, we verify}, 4/\textbf{Full delegation of all research}} {
+    \fill[whu_blue] (\x,0) circle (4pt);
+    \node[below=7pt, align=center, text width=2.4cm, font=\small, text=whu_anthracite] at (\x,0) {\l};
+  }
+\end{tikzpicture}
+\end{center}
+
+\vspace{1.5em}
+
+\begin{center}
+\large\textbf{\textcolor{whu_blue}{Where on the scale should we use AI for research?}}
+\end{center}
+
+## Thank you for your attention
+
+:::: {.columns}
+::: {.column width="60%"}
+I look forward to hearing your thoughts and experiences.
+
+\vspace{1em}
+
+\small
+Prof. Dr. Victor van Pelt\
+Professor of Behavioral Accounting\
+Finance and Accounting Group\
+WHU - Otto Beisheim School of Management
+
+Campus Vallendar, Burgplatz 2, 56179 Vallendar, Germany\
+Tel.: +49 (0)261 6509 483\
+**Victor.vanPelt@whu.edu**\
+**www.victorvanpelt.com**
+:::
+::: {.column width="38%"}
+<!-- own figure -->
+\includegraphics[width=\linewidth]{images/profile.png}
+:::
+::::
+
+## References {.t}
+
+\footnotesize
+
+::: {#refs}
+:::
