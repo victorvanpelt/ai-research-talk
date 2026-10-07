@@ -2,7 +2,9 @@
 \begin{tikzpicture}[
   dir/.style={anchor=west, font=\small\bfseries, text=whu_blue, inner sep=1pt},
   file/.style={anchor=west, font=\small, text=whu_anthracite, inner sep=1pt},
-  tl/.style={draw=whu_anthracite!60, line width=0.6pt}
+  tl/.style={draw=whu_anthracite!60, line width=0.6pt},
+  rbox/.style={anchor=north west, draw=whu_blue, line width=0.8pt, fill=whu_silvergray!60,
+    rounded corners=3pt, text width=7.6cm, inner sep=8pt, font=\small, text=whu_anthracite}
 ]
   \node[anchor=west, font=\small\bfseries, text=whu_anthracite, inner sep=1pt] (root) at (0,0) {Project folder};
   \node[dir] at (0.55,-0.40) {0\_data};
@@ -35,12 +37,14 @@
   \draw[tl] (0.8,-2.58) -- (0.8,-2.80);
   \draw[tl] (0.8,-3.38) -- (0.8,-4.00);
   \draw[tl] (0.8,-4.58) -- (0.8,-4.80);
-  \node[anchor=north west, draw=whu_blue, line width=0.8pt, fill=whu_silvergray!60,
-    rounded corners=3pt, text width=6.4cm, inner sep=8pt, font=\small, text=whu_anthracite]
-    at (4.6,-0.1) {%
+  \node[rbox] (rules) at (4.6,-0.1) {%
     \textbf{\textcolor{whu_blue}{Four rules}}\\[3pt]
     1.\ Never modify \textbf{0\_data}\\[2pt]
     2.\ Only save data to \textbf{2\_process}\\[2pt]
     3.\ Only load data from \textbf{0\_data} or \textbf{2\_process}\\[2pt]
     4.\ Anything in \textbf{2\_process} and \textbf{3\_output} can be deleted and regenerated from \textbf{1\_code}};
+  \node[rbox] at ($(rules.south west)+(0,-0.25)$) {%
+    \textbf{\textcolor{whu_blue}{Agents have two roles:}}\\[3pt]
+    Role 1: Agents edit the code, or help us edit it\\[2pt]
+    Role 2: AI as a source of generated data only};
 \end{tikzpicture}
