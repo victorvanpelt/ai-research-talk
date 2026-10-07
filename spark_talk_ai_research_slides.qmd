@@ -5,11 +5,11 @@ institute: 'Professor of Behavioral Accounting`\\`{=latex} WHU - Otto Beisheim S
 format:
   beamer:
     aspectratio: 169
-    include-in-header: talk_template.sty
+    include-in-header: template/talk_template.sty
     keep-tex: true
     slide-level: 2
-bibliography: references.bib
-csl: apa.csl
+bibliography: references/references.bib
+csl: references/apa.csl
 header-includes:
   - \usepackage{tcolorbox}
   - \newcommand{\studycard}{\begin{tcolorbox}[width=\linewidth,colback=whu_lightblue!10,colframe=whu_lightblue!10,boxrule=0pt,arc=6pt,left=0.35cm,right=0.35cm,top=6pt,bottom=6pt,before skip=0pt,after skip=0pt]\small\color{whu_anthracite}\setlength{\parskip}{2.5pt}}
@@ -327,7 +327,7 @@ See the \href{https://platform.claude.com/docs/en/agents-and-tools/agent-skills/
 \vspace{0.3em}
 
 \begin{center}
-\input{folder_structure.tex}
+\input{images/folder_structure.tex}
 \end{center}
 
 \source{\href{https://github.com/victorvanpelt/research_pipeline_example}{github.com/victorvanpelt/research\_pipeline\_example}}

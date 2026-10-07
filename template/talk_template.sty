@@ -1,7 +1,7 @@
 % WHU beamer theme (16:9) - v6.0 "Air"
 % Usage (qmd):  include-in-header: talk_template.sty   (Quarto, lualatex)
 % Usage (tex):  \input{talk_template.sty}              (hand-written beamer, xelatex)
-% Requires 00_whu_logo.png in the working directory.
+% Requires template/00_whu_logo.png, seen from the folder of the deck.
 % Font: Lato (TeX Live package "lato"); falls back to TeX Gyre Heros, then
 % to the engine default, so the theme compiles on hosts without Lato.
 \ProvidesFile{talk_template.sty}[2026/08/07 WHU beamer theme v6.0]
@@ -148,7 +148,7 @@
   % layout that adds ~36pt and pushes the date onto the bottom strip.
   \setlength{\parskip}{0pt}%
   \vskip.7cm
-  \includegraphics[keepaspectratio,height=1.3cm]{00_whu_logo.png}
+  \includegraphics[keepaspectratio,height=1.3cm]{template/00_whu_logo.png}
   \vfill
   {\color{whu_lightblue}\rule{1.6cm}{4pt}}\par
   \vskip10pt
