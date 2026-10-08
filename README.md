@@ -1,6 +1,6 @@
-# Using AI Responsibly for Research
+# Using AI for Reproducible Research
 
-Slides for "Using AI Responsibly for Research", a faculty spark talk at WHU - Otto Beisheim School of Management. The talk asks where we should use AI in research, on a scale from no AI use to the full delegation of all research. Research must be reproducible, whereas AI agents are probabilistic (i.e., the same task can return different results) and can report the same steps differently. Thus, I argue for a skill-first setup, in which a written workflow sets the steps for us and for our AI agents. The talk shows my current skill template, a paper audit skill as an example, and a reproducible folder structure with the rules that every AI agent must follow.
+Slides for a faculty talk at WHU - Otto Beisheim School of Management. The talk asks how we can use AI for reproducible research. Research must be reproducible, whereas LLMs are probabilistic (i.e., the same task can return different results) and can report the same steps differently. Thus, I argue for a skill-first setup, in which a written workflow sets the steps for us and for our agents. The talk shows my current skill template, a paper audit skill as an example, and a reproducible folder structure with the rules that every AI agent must follow.
 
 The deck is one [Quarto](https://quarto.org) file, `spark_talk_ai_research_slides.qmd`, which renders to `spark_talk_ai_research_slides.pdf` on the WHU beamer template. Two slides show a companion repository, the [research pipeline example](https://github.com/victorvanpelt/research_pipeline_example).
 
