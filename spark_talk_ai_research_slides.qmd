@@ -1,5 +1,5 @@
 ---
-title: "Using AI Responsibly for Research"
+title: "Using AI for Reproducible Research"
 author: "Victor van Pelt"
 institute: 'Professor of Behavioral Accounting`\\`{=latex} WHU - Otto Beisheim School of Management'
 format:
@@ -32,7 +32,7 @@ header-includes:
 
 \source{\href{https://www.youtube.com/watch?v=YdpFu6Fkr58}{youtube.com/watch?v=YdpFu6Fkr58}}
 
-## Can we (and should we) delegate all research to AI?
+## What does research say (for the time being)?
 
 AI handles the technical work better, but struggles with ideas and research judgment.\
 \
@@ -42,7 +42,7 @@ AI handles the technical work better, but struggles with ideas and research judg
 
 AI models rated 912 AI-written economics papers and 41 published papers [@li2026]
 
-They also rated scored equally high on execution, but fewer ideas reached top-journal level (23% vs.\ 73%)
+They also rated scored equally high on execution, but fewer ideas reached top-journal level
 
 \studycardend
 
@@ -57,7 +57,7 @@ The paper's authors reviewed the result: the conclusions did not follow from the
 \studycardend
 
 
-## The scale of AI use in research
+## Where on this scale do I want to be?
 
 \vspace{1.5em}
 
@@ -74,38 +74,10 @@ The paper's authors reviewed the result: the conclusions did not follow from the
 \vspace{2em}
 
 \begin{center}
-\large\textbf{\textcolor{whu_blue}{Where on the scale are you / do you want to be?}}
+\large\textbf{\textcolor{whu_blue}{Reflect yourself while I explain my current position}}
 \end{center}
 
-## A few basics about AI tooling
-
-```{=latex}
-\begin{center}
-\begin{tikzpicture}[
-  card/.style={rounded corners=6pt,fill=whu_lightblue!10},
-  term/.style={anchor=west,align=left,inner sep=0pt,font=\large\bfseries,text=whu_blue},
-  defn/.style={anchor=west,align=left,text width=10.4cm,inner sep=0pt,font=\normalsize,text=whu_anthracite}
-]
-  % one row per term: the term on the left, its definition on the right
-  \foreach \i/\t/\d in {
-    0/Harness/{The software around an LLM that lets it read files, run code,\\ and search the web (e.g., Claude Code, Codex, dsh, and PI)},
-    1/Agent/{An LLM in a harness tha+t works on a task independently\\ and chooses its own steps},
-    2/Skill/{A folder with written instructions and scripts\\ that tell an agent how to do a specific task},
-    3/{AGENTS.md\\[-1pt]{\small\mdseries (CLAUDE.md)}}/{A text file with our rules that the agent reads\\ at the start of every session}
-  } {
-    \fill[card] (-6.95,-1.32*\i) rectangle (6.95,-1.32*\i+1.14);
-    \node[term] at (-6.6,-1.32*\i+0.57) {\t};
-    \node[defn] at (-3.8,-1.32*\i+0.57) {\d};
-  }
-  % a smaller row for the tooling that the four terms leave out: outline only, grey label
-  \draw[rounded corners=6pt,line width=0.8pt,dash pattern=on 3pt off 2pt,whu_lightblue!60] (-6.95,-4.76) rectangle (6.95,-4.14);
-  \node[term,font=\normalsize\bfseries,text=whu_anthracite] at (-6.6,-4.45) {Other tooling};
-  \node[defn,font=\small] at (-3.8,-4.45) {MCP, evals, hooks, memory, and sandboxes};
-\end{tikzpicture}
-\end{center}
-```
-
-## What tooling does good research need?
+## One fundamental challenge
 
 ```{=latex}
 \begin{center}
@@ -114,7 +86,7 @@ The paper's authors reviewed the result: the conclusions did not follow from the
   card/.style={rounded corners=6pt,fill=whu_lightblue!10},
   ttl/.style={font=\large\bfseries,text=whu_blue},
   head/.style={rectangle,rounded corners=9pt,fill=whu_blue,text=white,font=\large\bfseries,
-               minimum height=0.8cm,minimum width=5.2cm,inner sep=3pt},
+               minimum height=0.8cm,minimum width=3.1cm,inner sep=3pt},
   io/.style={rectangle,rounded corners=3pt,fill=white,text=whu_anthracite,
              minimum height=0.8cm,minimum width=1.1cm,inner sep=3pt},
   run/.style={rectangle,rounded corners=3pt,fill=white,text=whu_anthracite,
@@ -141,8 +113,8 @@ The paper's authors reviewed the result: the conclusions did not follow from the
   \draw[arr] (me.east) -- (r2.west);
   \node[txt] at (-3.625,0.95) {Every run must return the same results\\[3pt] We must be able to verify every step};
 
-  % agents: runs differ
-  \node[ttl] at (3.625,3.2) {Agents are probabilistic};
+  % LLMs: runs differ
+  \node[ttl] at (3.625,3.2) {LLMs are probabilistic};
   \node[io] (ta) at (1.25,2.15) {Task};
   \node[lead] (ag) at (3.05,2.15) {Agent};
   \node[run] (a1) at (5.3,2.46) {Run 1: A};
@@ -151,17 +123,69 @@ The paper's authors reviewed the result: the conclusions did not follow from the
   \draw[arr] (ta) -- (ag);
   \draw[arr,dashed] (ag.east) -- (a1.west);
   \draw[arr,dashed] (ag.east) -- (a2.west);
-  \node[txt] at (3.625,0.95) {The same task can return different results\\[3pt] Agents can report the same steps differently};
+  \node[txt] at (3.625,0.95) {The same input can return different outputs\\[3pt] LLMs can report the same steps differently};
 
   % my view
-  \node[head] (sf) at (0,-0.75) {Skills-first AI Tooling!};
+  \node[head] (sf) at (0,-0.75) {Problem!};
   \draw[fork] (-3.625,0.3) |- (sf.west);
   \draw[fork] (3.625,0.3) |- (sf.east);
 \end{tikzpicture}
 \end{center}
 ```
+## To solve this, we need to understand a few basics about AI tooling
 
-## What's the difference between skill- and agent first?
+```{=latex}
+\begin{center}
+\begin{tikzpicture}[
+  card/.style={rounded corners=6pt,fill=whu_lightblue!10},
+  term/.style={anchor=west,align=left,inner sep=0pt,font=\large\bfseries,text=whu_blue},
+  defn/.style={anchor=west,align=left,text width=10.4cm,inner sep=0pt,font=\normalsize,text=whu_anthracite}
+]
+  % one row per term: the term on the left, its definition on the right
+  \foreach \i/\t/\d in {
+    0/Harness/{The software around an LLM that lets it read files, run code,\\ and search the web (e.g., Claude Code, Codex, dsh, and PI)},
+    1/Agent/{An LLM in a harness that works on a task independently\\ and chooses its own steps},
+    2/Skill/{A folder with written instructions and scripts that tell an\\ agent how to do a specific task},
+    3/{AGENTS.md\\[-1pt]{\small\mdseries (CLAUDE.md)}}/{A text file with our rules that the agent reads at the \\ start of every session}
+  } {
+    \fill[card] (-6.95,-1.32*\i) rectangle (6.95,-1.32*\i+1.14);
+    \node[term] at (-6.6,-1.32*\i+0.57) {\t};
+    \node[defn] at (-3.8,-1.32*\i+0.57) {\d};
+  }
+  % a smaller row for the tooling that the four terms leave out: outline only, grey label
+  \draw[rounded corners=6pt,line width=0.8pt,dash pattern=on 3pt off 2pt,whu_lightblue!60] (-6.95,-4.76) rectangle (6.95,-4.14);
+  \node[term,font=\normalsize\bfseries,text=whu_anthracite] at (-6.6,-4.45) {Other tooling};
+  \node[defn,font=\small] at (-3.8,-4.45) {MCP, evals, hooks, memory, and sandboxes};
+\end{tikzpicture}
+\end{center}
+```
+
+## What should this AI tooling do?
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}[
+  card/.style={rounded corners=6pt,fill=whu_lightblue!10},
+  num/.style={circle,fill=whu_blue,text=white,font=\large\bfseries,minimum size=0.8cm,inner sep=0pt},
+  row/.style={anchor=north west,align=left,text width=11.9cm,inner sep=0pt,font=\normalsize,text=whu_anthracite}
+]
+  \node[row] (t1) at (-5.45,0) {{\large\bfseries\color{whu_blue} Clear objectives and processes}\\[1pt]
+    It should help us set well-defined goals and structured processes, which is what reproducible research requires: A clear methodological approach.};
+
+  \node[row] (t2) at ($(t1.south west)+(0,-0.76)$) {{\large\bfseries\color{whu_blue} Clear roles for humans and agents}\\[1pt]
+    It should optimize where human judgment is needed/valuable and where boring steps can be delegated to agents (i.e., no need for verification).};
+
+  \begin{scope}[on background layer]
+    \fill[card] ($(t1.north west)+(-1.5,0.18)$) rectangle ($(t1.south east)+(0.5,-0.18)$);
+    \fill[card] ($(t2.north west)+(-1.5,0.18)$) rectangle ($(t2.south east)+(0.5,-0.18)$);
+  \end{scope}
+  \node[num] at ($(t1.west)+(-0.75,0)$) {1};
+  \node[num] at ($(t2.west)+(-0.75,0)$) {2};
+\end{tikzpicture}
+\end{center}
+```
+
+## Solution: skill-first over agent-first AI tooling
 
 ```{=latex}
 \begin{center}
@@ -180,79 +204,67 @@ The paper's authors reviewed the result: the conclusions did not follow from the
   txt/.style={font=\small,text=whu_anthracite}
 ]
   % the choice
-  \node[head] (ha) at (-3.6,2.12) {Agent-first};
-  \node[head] (hs) at (3.6,2.12) {Skill-first};
-  \node[txt] at (-3.6,1.45) {Design and optimize autonomous agents};
-  \node[txt] at (3.6,1.45) {Design workflows that we or our agents can call};
+  \node[head] (hs) at (-3.6,2.12) {Skill-first};
+  \node[head] (ha) at (3.6,2.12) {Agent-first};
+  \node[txt] at (-3.6,1.45) {Design workflows that we or our agents can call};
+  \node[txt] at (3.6,1.45) {Design autonomous agents with responsibilities};
+
+  % skill-first: a workflow sets the steps and gates
+  \node[io] (ts) at (-6.42,0.3) {Task};
+  \node[lead] (s1) at (-4.95,0.3) {Step 1};
+  \node[lead] (s2) at (-3.6,0.3) {Step 2};
+  \node[lead] (s3) at (-2.25,0.3) {Step 3};
+  \node[io,minimum width=1.15cm] (rs) at (-0.78,0.3) {Result};
+  \draw[arr] (ts) -- (s1);
+  \draw[arr] (s1) -- (s2);
+  \draw[arr] (s2) -- (s3);
+  \draw[arr] (s3) -- (rs);
+  \node[note] at (-3.6,-0.75) {A workflow sets the steps and gates};
 
   % agent-first: the agent chooses the steps
-  \node[io] (ta) at (-6.42,0.3) {Task};
-  \node[lead,minimum width=1.35cm] (ag) at (-4.8,0.3) {Agent};
-  \node[open] (g1) at (-3.55,0.55) {?};
-  \node[open] (g2) at (-2.95,0.05) {?};
-  \node[open] (g3) at (-2.35,0.55) {?};
-  \node[io,minimum width=1.15cm] (ra) at (-0.87,0.3) {Result};
+  \node[io] (ta) at (0.78,0.3) {Task};
+  \node[lead,minimum width=1.35cm] (ag) at (2.4,0.3) {Agent};
+  \node[open] (g1) at (3.65,0.55) {?};
+  \node[open] (g2) at (4.25,0.05) {?};
+  \node[open] (g3) at (4.85,0.55) {?};
+  \node[io,minimum width=1.15cm] (ra) at (6.33,0.3) {Result};
   \draw[arr] (ta) -- (ag);
   \draw[arr,dashed] (ag.east) -- (g1);
   \draw[arr,dashed] (g1) -- (g2);
   \draw[arr,dashed] (g2) -- (g3);
   \draw[arr,dashed] (g3) -- (ra.west);
-  \node[note] at (-3.6,-0.75) {The agent chooses the steps};
-
-  % skill-first: a written workflow sets the steps
-  \node[io] (ts) at (0.78,0.3) {Task};
-  \node[lead] (s1) at (2.25,0.3) {Step 1};
-  \node[lead] (s2) at (3.6,0.3) {Step 2};
-  \node[lead] (s3) at (4.95,0.3) {Step 3};
-  \node[io,minimum width=1.15cm] (rs) at (6.42,0.3) {Result};
-  \draw[arr] (ts) -- (s1);
-  \draw[arr] (s1) -- (s2);
-  \draw[arr] (s2) -- (s3);
-  \draw[arr] (s3) -- (rs);
-  \node[note] at (3.6,-0.75) {A written workflow sets the steps};
+  \node[note] at (3.6,-0.75) {The agent chooses the steps};
 \end{tikzpicture}
 \end{center}
 ```
 
 \begin{center}
-Not mutually exclusive, but this priority shapes how we think about tooling and AI use.
+Skill-first tooling can ensure: researcher-in-the-loop.
 \end{center}
 
+## Simple example: the paper audit skill
 
+**Purpose:** Execute an audit (mistakes, errors, inconsistencies, and fact-check) in a paper before it goes to a journal.
 
-## How can skill-first help us do reproducible research?
+- **Input:** I give it the paper, any other materials, and optional instructions
+- **Plan:** The main model lists the tables, figures, and references, and the most likely errors
+- **Execute:** Four helper models each check one part (references, tables, text, response letter)
+- **Review:** The main model reviews the findings, looks for missed errors, and writes one report
+- **Audit:** A helper model checks each finding against the paper, and the main model revises
+- **Result:** I check the final report, which ranks each mistake with its location
 
-\vspace{0.6em}
+## More complex example: the paper reviser skill
 
-\begin{center}
-Skill-first allows us to fix the process in a workflow, for us and for our AI agents.
-\end{center}
+**Purpose:** Execute a preliminary revision of a paper based on comments.
 
-```{=latex}
-\begin{center}
-\begin{tikzpicture}[
-  card/.style={rounded corners=6pt,fill=whu_lightblue!10},
-  num/.style={circle,fill=whu_blue,text=white,font=\large\bfseries,minimum size=0.8cm,inner sep=0pt},
-  row/.style={anchor=north west,align=left,text width=11.9cm,inner sep=0pt,font=\normalsize,text=whu_anthracite}
-]
-  % each card follows the height of its text
-  % benefit 1
-  \node[row] (t1) at (-5.45,0) {{\large\bfseries\color{whu_blue} Clear goals and repeatable processes}\\[1pt]
-    It forces us to set well-defined goals and processes, which is what reproducible research requires.};
-
-  % benefit 2
-  \node[row] (t2) at ($(t1.south west)+(0,-0.76)$) {{\large\bfseries\color{whu_blue} Clear roles for humans and agents}\\[1pt]
-    It makes us decide where human judgment is needed/valuable and where steps can be delegated to agents (i.e., no need for verification).};
-
-  \begin{scope}[on background layer]
-    \fill[card] ($(t1.north west)+(-1.5,0.18)$) rectangle ($(t1.south east)+(0.5,-0.18)$);
-    \fill[card] ($(t2.north west)+(-1.5,0.18)$) rectangle ($(t2.south east)+(0.5,-0.18)$);
-  \end{scope}
-  \node[num] at ($(t1.west)+(-0.75,0)$) {1};
-  \node[num] at ($(t2.west)+(-0.75,0)$) {2};
-\end{tikzpicture}
-\end{center}
-```
+- **Input:** I give it the paper, reviewer/editor/discussant comments, and optional instructions
+- **Intent:** The main model writes how it reads my request, and I correct it (1st gate)
+- **Plan:** The main model turns each comment into a task and sets the order of the changes
+- **Execute:** The main model edits the paper and drafts preliminary responses to the comments,\
+  and a helper model verifies new references
+- **Review:** A peer model reviews the revisions with fresh eyes, and the main model corrects
+- **Audit:** A helper model checks that each comment is addressed correctly
+- **Result:** I process each change, the response, and points left open (2nd gate)
 
 ## My current skill template (extended version)
 
@@ -264,32 +276,7 @@ Skill-first allows us to fix the process in a workflow, for us and for our AI ag
 See the \href{https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices}{\textcolor{whu_lightblue}{Anthropic documentation}} and \href{https://agentskills.io}{\textcolor{whu_lightblue}{agentskills.io}}.
 \end{center}
 
-## Simple example: the paper audit skill
-
-**Purpose:** Execute an audit (mistakes, errors, inconsistencies, and fact-check) in a paper before it goes to a journal.
-
-- **Input:** I give it the paper, any other materials, and optional instructions (No 1st gate)
-- **Plan:** The main model lists the tables, figures, and references, and the most likely errors
-- **Execute:** Four helper models each check one part (references, tables, text, response letter)
-- **Review:** The main model reviews the findings, looks for missed errors, and writes one report
-- **Audit:** A helper model checks each finding against the paper, and the main model revises
-- **Result:** I check the final report, ranking each mistake with its location (2nd gate)
-
-## Heavy example: the paper reviser skill
-
-**Purpose:** Execute a preliminary revision of a paper based on reviewer/editor comments.
-
-- **Input:** I give it the paper, reviewer/editor comments, and optional instructions
-- **Intent:** The main model writes how it reads my request, and I correct it (1st gate)
-- **Plan:** The main model turns each comment into a task and sets the order of the changes
-- **Execute:** The main model edits the paper and drafts preliminary responses to the comments,\
-  and a helper model verifies new references
-- **Review:** A peer model reviews the revisions with fresh eyes, and the main model corrects
-- **Audit:** A helper model checks that each comment is addressed,\
-  and that each response matches the paper
-- **Result:** I process each change, the response, and points left open (2nd gate)
-
-## Public examples: the research skills repository
+## "Starter" skills repository
 
 ```{=latex}
 \begin{center}
@@ -304,9 +291,9 @@ See the \href{https://platform.claude.com/docs/en/agents-and-tools/agent-skills/
 
   % one row per example skill: its name on the left, what it does on the right
   \foreach \i/\t/\d in {
-    0/Paper finder/{Finds papers on a topic and drops what it cannot confirm},
+    0/Paper finder/{Careful search for research papers on a topic},
     1/English editor/{Corrects grammar and style, and marks every change},
-    2/Feedback reviser/{Drafts the smallest change for each supervisor comment},
+    2/Feedback reviser/{Processes changes based on comments},
     3/Document auditor/{Checks every reference, fact, and number in a document}
   } {
     \fill[card] (-6.95,-0.84*\i) rectangle (6.95,-0.84*\i+0.7);
@@ -322,7 +309,7 @@ See the \href{https://platform.claude.com/docs/en/agents-and-tools/agent-skills/
 \end{center}
 ```
 
-## How can AI agents help us analyze data?
+## But how can AI help us analyze data?
 
 \vspace{0.3em}
 
@@ -476,8 +463,7 @@ Thus, we let Jev classify how the chatbot behaves in each reply, either to creat
 
 :::: {.columns .onlytextwidth}
 ::: {.column width="64%"}
-I look forward to hearing your thoughts and experiences.
-
+Slides: **https://github.com/victorvanpelt/ai-research-talk**
 \vspace{1em}
 
 \small
@@ -493,7 +479,7 @@ Tel.: +49 (0)261 6509 483\
 :::
 ::: {.column width="34%"}
 <!-- own figure -->
-\includegraphics[width=\linewidth,trim=141bp 0 0 0,clip]{images/profile.png}
+\includegraphics[width=\linewidth]{images/ai_research_talk_qr.png}
 :::
 ::::
 
