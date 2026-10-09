@@ -2,16 +2,18 @@
 
 Slides for a faculty talk at WHU - Otto Beisheim School of Management. The talk asks how we can use AI for reproducible research. Research must be reproducible, whereas LLMs are probabilistic (i.e., the same task can return different results) and can report the same steps differently. Thus, I argue for a skill-first setup, in which a written workflow sets the steps for us and for our agents. The talk shows my current skill template, a paper audit skill as an example, and a reproducible folder structure with the rules that every AI agent must follow.
 
-The slides are available as a [PDF](spark_talk_ai_research_slides.pdf).
+The slides are available as a [PDF](slide_deck.pdf).
 
-The deck is one [Quarto](https://quarto.org) file, `spark_talk_ai_research_slides.qmd`, which renders to `spark_talk_ai_research_slides.pdf` on the WHU beamer template. Two slides show a companion repository, the [research pipeline example](https://github.com/victorvanpelt/research_pipeline_example).
+The deck is one [Quarto](https://quarto.org) file, `slide_deck.qmd`, which renders to `slide_deck.pdf` on the WHU beamer template. Two slides show a companion repository, the [research pipeline example](https://github.com/victorvanpelt/research_pipeline_example).
 
-## Repository structure
+## Repository
+
+The repository is available at [github.com/victorvanpelt/ai-research-talk](https://github.com/victorvanpelt/ai-research-talk).
 
 ```
 ai-research-talk/
-├── spark_talk_ai_research_slides.qmd   the deck's source; this is the file to edit
-├── spark_talk_ai_research_slides.pdf   the rendered slides
+├── slide_deck.qmd                      the deck's source; this is the file to edit
+├── slide_deck.pdf                      the rendered slides
 ├── template/
 │   ├── talk_template.sty               WHU beamer template
 │   └── 00_whu_logo.png                 WHU logo that the template loads
@@ -20,6 +22,7 @@ ai-research-talk/
 ├── references/
 │   ├── references.bib                  bibliography
 │   └── apa.csl                         APA 7 citation style
+├── _config.yml                         tells GitHub Pages to skip the Quarto file
 ├── .gitignore                          keeps build files out of git
 └── README.md                           this file
 ```
@@ -29,7 +32,7 @@ ai-research-talk/
 ```bash
 git clone https://github.com/victorvanpelt/ai-research-talk.git
 cd ai-research-talk
-quarto render spark_talk_ai_research_slides.qmd
+quarto render slide_deck.qmd
 ```
 
 ### Requirements

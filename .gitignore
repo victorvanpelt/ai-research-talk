@@ -1,7 +1,7 @@
 # Quarto and LaTeX build files; `quarto render` makes all of them again
 .quarto/
 *_files/
-spark_talk_ai_research_slides.tex
+slide_deck.tex
 *.aux
 *.log
 *.nav

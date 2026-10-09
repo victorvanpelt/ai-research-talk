@@ -467,7 +467,7 @@ Thus, we let Jev classify how the chatbot behaves in each reply, either to creat
 
 :::: {.columns .onlytextwidth}
 ::: {.column width="64%"}
-Slides: **https://github.com/victorvanpelt/ai-research-talk**
+Slides: **\href{https://victorvanpelt.github.io/ai-research-talk}{https://victorvanpelt.github.io/ai-research-talk}**
 \vspace{1em}
 
 \small
@@ -478,8 +478,8 @@ WHU - Otto Beisheim School of Management\
 \
 Burgplatz 2, 56179 Vallendar, Germany\
 Tel.: +49 (0)261 6509 483\
-**Victor.vanPelt@whu.edu**\
-**www.victorvanpelt.com**
+**\href{mailto:Victor.vanPelt@whu.edu}{Victor.vanPelt@whu.edu}**\
+**\href{https://www.victorvanpelt.com}{www.victorvanpelt.com}**
 :::
 ::: {.column width="34%"}
 <!-- own figure -->
