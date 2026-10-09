@@ -2,6 +2,8 @@
 
 Slides for a faculty talk at WHU - Otto Beisheim School of Management. The talk asks how we can use AI for reproducible research. Research must be reproducible, whereas LLMs are probabilistic (i.e., the same task can return different results) and can report the same steps differently. Thus, I argue for a skill-first setup, in which a written workflow sets the steps for us and for our agents. The talk shows my current skill template, a paper audit skill as an example, and a reproducible folder structure with the rules that every AI agent must follow.
 
+The slides are available as a [PDF](spark_talk_ai_research_slides.pdf).
+
 The deck is one [Quarto](https://quarto.org) file, `spark_talk_ai_research_slides.qmd`, which renders to `spark_talk_ai_research_slides.pdf` on the WHU beamer template. Two slides show a companion repository, the [research pipeline example](https://github.com/victorvanpelt/research_pipeline_example).
 
 ## Repository structure

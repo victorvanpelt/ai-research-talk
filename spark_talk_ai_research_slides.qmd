@@ -102,7 +102,7 @@ The paper's authors reviewed the result: the conclusions did not follow from the
   \fill[card] (0.3,0.3) rectangle (6.95,3.65);
 
   % research: runs match
-  \node[ttl] at (-3.625,3.2) {Research must be reproducible};
+  \node[ttl] at (-3.625,3.2) {Good research is reproducible};
   \node[io] (da) at (-6,2.15) {Data};
   \node[lead] (me) at (-4.2,2.15) {Method};
   \node[run] (r1) at (-1.95,2.46) {Run 1: A};
@@ -132,7 +132,7 @@ The paper's authors reviewed the result: the conclusions did not follow from the
 \end{tikzpicture}
 \end{center}
 ```
-## To solve this, we need to understand a few basics about AI tooling
+## To solve this, we need to understand a few basics about AI tooling first
 
 ```{=latex}
 \begin{center}
@@ -155,7 +155,7 @@ The paper's authors reviewed the result: the conclusions did not follow from the
   % a smaller row for the tooling that the four terms leave out: outline only, grey label
   \draw[rounded corners=6pt,line width=0.8pt,dash pattern=on 3pt off 2pt,whu_lightblue!60] (-6.95,-4.76) rectangle (6.95,-4.14);
   \node[term,font=\normalsize\bfseries,text=whu_anthracite] at (-6.6,-4.45) {Other tooling};
-  \node[defn,font=\small] at (-3.8,-4.45) {MCP, evals, hooks, memory, and sandboxes};
+  \node[defn,font=\small] at (-3.8,-4.45) {MCP, evals, hooks, memory, context, sandboxes, mods};
 \end{tikzpicture}
 \end{center}
 ```
@@ -185,7 +185,7 @@ The paper's authors reviewed the result: the conclusions did not follow from the
 \end{center}
 ```
 
-## Solution: skill-first over agent-first AI tooling
+## My preference: skill-first over agent-first AI tooling
 
 ```{=latex}
 \begin{center}
@@ -242,6 +242,20 @@ The paper's authors reviewed the result: the conclusions did not follow from the
 Skill-first tooling can ensure: researcher-in-the-loop.
 \end{center}
 
+## Skill workflows (examples)
+
+\begin{center}
+\begin{tikzpicture}
+  % both pictures at the same scale; the simple one is moved right so that Plan, Execute, and Review line up
+  \node[anchor=north west,inner sep=0pt] (ext) at (0,0) {\includegraphics[scale=0.68]{images/skill_workflow.pdf}};
+  \node[anchor=south west,inner sep=0pt] (simple) at ([xshift=1.476cm,yshift=0.3cm]ext.north west) {\includegraphics[scale=0.68]{images/skill_workflow_simple.pdf}};
+  \node[anchor=north west,inner sep=0pt,font=\bfseries,text=whu_blue] at (simple.north west -| ext.north west) {Simple};
+  \node[anchor=north west,inner sep=0pt,font=\bfseries,text=whu_blue] at (ext.north west) {Extended};
+\end{tikzpicture}
+
+See the \href{https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices}{\textcolor{whu_lightblue}{Anthropic documentation}} and \href{https://agentskills.io}{\textcolor{whu_lightblue}{agentskills.io}}.
+\end{center}
+
 ## Simple example: the paper audit skill
 
 **Purpose:** Execute an audit (mistakes, errors, inconsistencies, and fact-check) in a paper before it goes to a journal.
@@ -265,16 +279,6 @@ Skill-first tooling can ensure: researcher-in-the-loop.
 - **Review:** A peer model reviews the revisions with fresh eyes, and the main model corrects
 - **Audit:** A helper model checks that each comment is addressed correctly
 - **Result:** I process each change, the response, and points left open (2nd gate)
-
-## My current skill template (extended version)
-
-\vspace{0.6em}
-
-\fitimage[\linewidth]{images/skill_workflow.pdf}
-
-\begin{center}
-See the \href{https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices}{\textcolor{whu_lightblue}{Anthropic documentation}} and \href{https://agentskills.io}{\textcolor{whu_lightblue}{agentskills.io}}.
-\end{center}
 
 ## "Starter" skills repository
 
