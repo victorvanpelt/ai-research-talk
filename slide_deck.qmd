@@ -206,8 +206,8 @@ The paper's authors reviewed the result: the conclusions did not follow from the
   % the choice
   \node[head] (hs) at (-3.6,2.12) {Skill-first};
   \node[head] (ha) at (3.6,2.12) {Agent-first};
-  \node[txt] at (-3.6,1.45) {Design workflows that we or our agents can call};
-  \node[txt] at (3.6,1.45) {Design autonomous agents with responsibilities};
+  \node[txt,align=center] at (-3.6,1.3) {One general agent that gets\\its way of working from skills};
+  \node[txt,align=center] at (3.6,1.3) {Many specialized agents,\\each with its role built in};
 
   % skill-first: a workflow sets the steps and gates
   \node[io] (ts) at (-6.42,0.3) {Task};
