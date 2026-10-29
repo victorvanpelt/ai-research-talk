@@ -57,6 +57,55 @@ The paper's authors reviewed the result: the conclusions did not follow from the
 \studycardend
 
 
+## What happens when experts work with an AI agent?
+
+:::: {.columns totalwidth=\textwidth}
+::: {.column width="50%"}
+\centering
+\includegraphics[height=0.76\textheight,keepaspectratio]{images/herdagdelen2026_fig4.png}
+
+\scriptsize Figure 4 in @herdagdelen2026: all five decisions (245 in total), who took a side first, and whose side the final choice took
+:::
+::: {.column width="46%"}
+\small
+50 causal-inference experts analyzed data with Claude Code
+
+\vspace{0.6em}
+A coin flip set which option the agent leaned toward on four analytical decisions
+
+\vspace{0.6em}
+The experts went with the agent's lean 86% of the time (50% by chance)
+
+\vspace{0.6em}
+Over half still rated the recommendation as more their own than the agent's
+
+\vspace{0.6em}
+\textcolor{whu_anthracite!75}{An Anthropic report, not peer reviewed: one task, one agent, and a lean that the system prompt amplified}
+:::
+::::
+
+## Do workers hide AI use from employers?
+
+:::: {.columns totalwidth=\textwidth}
+::: {.column width="40%"}
+\centering
+\includegraphics[height=0.78\textheight,keepaspectratio]{images/ivanti2025_ai_secret.png}
+:::
+::: {.column width="56%"}
+\small
+Ivanti surveyed over 6,000 office workers and 1,200 IT professionals in February 2025 [@ivanti2025]
+
+\vspace{0.6em}
+Of those who use generative AI at work, 32% keep their use of some AI tools a secret from their employer
+
+\vspace{0.6em}
+They name the "secret advantage" (36%) and the worry that their job may be cut (30%) as reasons
+
+\vspace{0.6em}
+\textcolor{whu_anthracite!75}{A survey by a software company, with unweighted results, on office work}
+:::
+::::
+
 ## Where on this scale do I want to be?
 
 \vspace{1.5em}
