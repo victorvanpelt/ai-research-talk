@@ -296,9 +296,9 @@ Skill-first tooling can ensure: researcher-in-the-loop.\\[2pt]
 
 \begin{center}
 \begin{tikzpicture}
-  % both pictures at the same scale; the simple one is moved right so that Plan, Execute, and Review line up
-  \node[anchor=north west,inner sep=0pt] (ext) at (0,0) {\includegraphics[scale=0.68]{images/skill_workflow.pdf}};
-  \node[anchor=south west,inner sep=0pt] (simple) at ([xshift=1.476cm,yshift=0.3cm]ext.north west) {\includegraphics[scale=0.68]{images/skill_workflow_simple.pdf}};
+  % both pictures at the same scale; the simple one is moved right so that Plan lines up
+  \node[anchor=north west,inner sep=0pt] (ext) at (0,0) {\includegraphics[scale=0.6]{images/skill_workflow.pdf}};
+  \node[anchor=south west,inner sep=0pt] (simple) at ([xshift=1.302cm,yshift=0.3cm]ext.north west) {\includegraphics[scale=0.6]{images/skill_workflow_simple.pdf}};
   \node[anchor=north west,inner sep=0pt,font=\bfseries,text=whu_blue] at (simple.north west -| ext.north west) {Simple};
   \node[anchor=north west,inner sep=0pt,font=\bfseries,text=whu_blue] at (ext.north west) {Extended};
 \end{tikzpicture}
