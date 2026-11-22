@@ -192,10 +192,10 @@ They name the "secret advantage" (36%) and the worry that their job may be cut (
 ]
   % one row per term: the term on the left, its definition on the right
   \foreach \i/\t/\d in {
-    0/Harness/{The software around an LLM that lets it read files, run code,\\ and search the web (e.g., Claude Code, Codex, dsh, and PI)},
+    0/Harness/{The software around an LLM that lets it read files, run code,\\ and search the web (e.g., Claude Code, Codex, dsh, and Pi)},
     1/Agent/{An LLM in a harness that works on a task independently\\ and chooses its own steps},
-    2/Skill/{A folder with written instructions and scripts that tell an\\ agent how to do a specific task},
-    3/{AGENTS.md\\[-1pt]{\small\mdseries (CLAUDE.md)}}/{A text file with our rules that the agent reads at the \\ start of every session}
+    2/Skill/{A folder with an instruction file (and at times templates, context,\\ or scripts) that tells any model how to do a specific task},
+    3/{AGENTS.md\\[-1pt]{\small\mdseries (CLAUDE.md)}}/{A text file with our rules and the work process that the\\ agent reads at the start of every session}
   } {
     \fill[card] (-6.95,-1.32*\i) rectangle (6.95,-1.32*\i+1.14);
     \node[term] at (-6.6,-1.32*\i+0.57) {\t};
@@ -222,7 +222,7 @@ They name the "secret advantage" (36%) and the worry that their job may be cut (
     It should help us set well-defined goals and structured processes, which is what reproducible research requires: A clear methodological approach.};
 
   \node[row] (t2) at ($(t1.south west)+(0,-0.76)$) {{\large\bfseries\color{whu_blue} Clear roles for humans and agents}\\[1pt]
-    It should optimize where human judgment is needed/valuable and where boring steps can be delegated to agents (i.e., no need for verification).};
+    It should optimize where human judgment is needed/valuable and where \mbox{routine} steps can be delegated to agents (i.e., steps in which the inputs fix the result).};
 
   \begin{scope}[on background layer]
     \fill[card] ($(t1.north west)+(-1.5,0.18)$) rectangle ($(t1.south east)+(0.5,-0.18)$);
@@ -234,7 +234,7 @@ They name the "secret advantage" (36%) and the worry that their job may be cut (
 \end{center}
 ```
 
-## My preference: skill-first over agent-first AI tooling
+## My preference: process-first over agent-first AI tooling
 
 ```{=latex}
 \begin{center}
@@ -253,12 +253,12 @@ They name the "secret advantage" (36%) and the worry that their job may be cut (
   txt/.style={font=\small,text=whu_anthracite}
 ]
   % the choice
-  \node[head] (hs) at (-3.6,2.12) {Skill-first};
+  \node[head] (hs) at (-3.6,2.12) {Process-first};
   \node[head] (ha) at (3.6,2.12) {Agent-first};
-  \node[txt,align=center] at (-3.6,1.3) {One general agent that gets\\its way of working from skills};
+  \node[txt,align=center] at (-3.6,1.3) {One general agent that follows\\one written work process};
   \node[txt,align=center] at (3.6,1.3) {Many specialized agents\\working autonomously};
 
-  % skill-first: a workflow sets the steps and gates
+  % process-first: the work process sets the steps and gates
   \node[io] (ts) at (-6.42,0.3) {Task};
   \node[lead] (s1) at (-4.95,0.3) {Step 1};
   \node[lead] (s2) at (-3.6,0.3) {Step 2};
@@ -268,7 +268,7 @@ They name the "secret advantage" (36%) and the worry that their job may be cut (
   \draw[arr] (s1) -- (s2);
   \draw[arr] (s2) -- (s3);
   \draw[arr] (s3) -- (rs);
-  \node[note] at (-3.6,-0.75) {A workflow sets the steps and gates};
+  \node[note] at (-3.6,-0.75) {The work process sets the steps and gates};
 
   % agent-first: the agent chooses the steps
   \node[io] (ta) at (0.78,0.3) {Task};
@@ -288,22 +288,20 @@ They name the "secret advantage" (36%) and the worry that their job may be cut (
 ```
 
 \begin{center}
-Skill-first tooling can ensure: researcher-in-the-loop.\\[2pt]
-{\small The two are not mutually exclusive: a skill calls further agents for routine steps.}
+Process-first tooling can ensure: researcher-in-the-loop.\\[2pt]
+{\small The two are not mutually exclusive: the process calls helper models for routine steps.}
 \end{center}
 
-## Skill workflows (examples)
+## My work process (simple and extended)
 
 \begin{center}
 \begin{tikzpicture}
   % both pictures at the same scale; the simple one is moved right so that Plan lines up
-  \node[anchor=north west,inner sep=0pt] (ext) at (0,0) {\includegraphics[scale=0.6]{images/skill_workflow.pdf}};
-  \node[anchor=south west,inner sep=0pt] (simple) at ([xshift=1.302cm,yshift=0.3cm]ext.north west) {\includegraphics[scale=0.6]{images/skill_workflow_simple.pdf}};
+  \node[anchor=north west,inner sep=0pt] (ext) at (0,0) {\includegraphics[scale=0.6]{images/work_process.pdf}};
+  \node[anchor=south west,inner sep=0pt] (simple) at ([xshift=1.302cm,yshift=0.3cm]ext.north west) {\includegraphics[scale=0.6]{images/work_process_simple.pdf}};
   \node[anchor=north west,inner sep=0pt,font=\bfseries,text=whu_blue] at (simple.north west -| ext.north west) {Simple};
   \node[anchor=north west,inner sep=0pt,font=\bfseries,text=whu_blue] at (ext.north west) {Extended};
 \end{tikzpicture}
-
-See the \href{https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices}{\textcolor{whu_lightblue}{Anthropic documentation}} and \href{https://agentskills.io}{\textcolor{whu_lightblue}{agentskills.io}}.
 \end{center}
 
 ## Principles for my setup
@@ -317,11 +315,11 @@ See the \href{https://platform.claude.com/docs/en/agents-and-tools/agent-skills/
 ]
   % one row per principle: the principle on top, its one-line explanation below
   \foreach \i/\t/\d in {
-    0/{One general agent, many skills}/{The skill that matches the task tells the agent how to work},
-    1/{Agents execute, and I verify}/{A step is handed over in full only when its result needs no verification},
-    2/{Judgment stays with the main model and with me}/{Helper models receive routine work only},
+    0/{One process, fewer agents}/{One process sets the steps; the skill that matches the task tells the model how to do it},
+    1/{Agents execute, and I verify}/{A step is handed over in full only when its inputs fix the result},
+    2/{Non-routine work stays with the main model and its peers, and judgment with me}/{Helper models receive routine work only},
     3/{Rules that must always hold are enforced by code}/{A model can forget a written rule, whereas a script that blocks an action cannot},
-    4/{The simplest mechanism comes first}/{A line in AGENTS.md, then a skill, then a workflow with several models}
+    4/{The simplest mechanism comes first}/{A line in AGENTS.md, then context, then a skill, then a script that enforces a rule}
   } {
     \fill[card] (-6.95,-1.16*\i) rectangle (6.95,-1.16*\i+1.02);
     \node[term] at (-6.6,-1.16*\i+0.72) {\t};
@@ -331,28 +329,30 @@ See the \href{https://platform.claude.com/docs/en/agents-and-tools/agent-skills/
 \end{center}
 ```
 
-## Simple example: the paper audit skill
+## Routine example: a paper audit
 
 **Purpose:** Execute an audit (mistakes, errors, inconsistencies, and fact-check) in a paper before it goes to a journal.
 
+- **Skill:** The checklists, the scripts that check references and numbers, and the report template
 - **Input:** I give it the paper, any other materials, and optional instructions
-- **Plan:** The main model lists the tables, figures, and references, and the most likely errors
+- **Reading:** The main model states how it reads my request and starts at once
 - **Execute:** Four helper models each check one part (references, tables, text, response letter)
-- **Review:** The main model reviews the findings, looks for missed errors, and writes one report
-- **Audit:** A helper model checks each finding against the paper, and the main model revises
+- **Check:** The main model confirms each finding in the paper and writes one report
 - **Result:** I check the final report, which ranks each mistake with its location
 
-## More complex example: the paper reviser skill
+## Non-routine example: a paper revision
 
 **Purpose:** Execute a preliminary revision of a paper based on comments.
 
+- **Skill:** The response-letter template, reference checks, and a script to order the tasks
 - **Input:** I give it the paper, reviewer/editor/discussant comments, and optional instructions
 - **Intent:** The main model writes how it reads my request, and I correct it (1st gate)
 - **Plan:** The main model turns each comment into a task and sets the order of the changes
+- **Review:** A peer model reviews the plan with fresh eyes, and the main model revises it
 - **Execute:** The main model edits the paper and drafts preliminary responses to the comments,\
   and a helper model verifies new references
-- **Review:** A peer model reviews the revisions with fresh eyes, and the main model corrects
-- **Audit:** A helper model checks that each comment is addressed correctly
+- **Review:** The main model reviews its revisions and corrects them
+- **Audit:** A helper model checks that each comment is addressed correctly (at most 3 rounds)
 - **Result:** I process each change, the response, and points left open (2nd gate)
 
 ## "Starter" skills repository
@@ -385,6 +385,8 @@ See the \href{https://platform.claude.com/docs/en/agents-and-tools/agent-skills/
     \node[link] {\href{https://github.com/victorvanpelt/research-skills}{github.com/victorvanpelt/research-skills}}; \&
     \node[inner sep=0pt] {\includegraphics[height=1.9cm]{images/research_skills_qr.png}}; \\};
 \end{tikzpicture}
+
+See the \href{https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices}{\textcolor{whu_lightblue}{Anthropic documentation}} and \href{https://agentskills.io}{\textcolor{whu_lightblue}{agentskills.io}}.
 \end{center}
 ```
 
@@ -502,7 +504,7 @@ Thus, we let Jev classify how the chatbot behaves in each reply, either to creat
     Most journals already require disclosure. It should be standard practice that we reflect on and are transparent about how we use AI, because this prevents misconceptions and promotes responsible use.};
 
   \node[row] (t3) at ($(t2.south west)+(0,-0.66)$) {{\large\bfseries\color{whu_blue} Statistical inference}\\[1pt]
-    AI lowers the hurdles to run many non-hypothesized tests, fish for results, and exploit researcher degree's of freedom. Thus, \mbox{preregistration} and sharing research materials become more important than ever.};
+    AI lowers the hurdles to run many non-hypothesized tests, fish for results, and exploit researcher degrees of freedom. Thus, \mbox{preregistration} and sharing research materials become more important than ever.};
 
   \begin{scope}[on background layer]
     \fill[card] ($(t1.north west)+(-1.5,0.18)$) rectangle ($(t1.south east)+(0.5,-0.18)$);
