@@ -1,6 +1,6 @@
 # Using AI for Reproducible Research
 
-Slides for a faculty talk at WHU - Otto Beisheim School of Management. The talk asks how we can use AI for reproducible research. Research must be reproducible, whereas LLMs are probabilistic (i.e., the same task can return different results) and can report the same steps differently. Thus, I argue for a process-first setup, in which one written work process sets the steps for us and for our agents, and skills tell a model how to do a specific task. The talk shows my work process, a routine and a non-routine example (a paper audit and a paper revision), and a reproducible folder structure with the rules that every AI agent must follow.
+Slides for a faculty talk at WHU - Otto Beisheim School of Management. The talk asks how we can use AI for reproducible research. Research must be reproducible, whereas LLMs are probabilistic (i.e., the same task can return different results) and can report the same steps differently. Thus, I argue for keeping the researcher in the loop: one written work process sets the steps for us and for our agents, and skills tell a model how to do a specific task. The talk shows my work process, a routine and a non-routine example (a paper audit and a paper revision), and a reproducible folder structure with the rules that every AI agent must follow.
 
 The slides are available as a [PDF](slide_deck.pdf).
 
